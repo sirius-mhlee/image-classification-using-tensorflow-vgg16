@@ -12,8 +12,11 @@ http://www.robots.ox.ac.uk/~vgg/research/very_deep/
 Training Usage
 -----
 
-    python ...
+    python TrainingModel.py train_data_file max_epoch batch_size output_npy_file
     
+    ex)
+    python TrainingModel.py ./data/train_data.txt 3 3 ./vgg16/save_model.npy
+
 Training Result
 ------
 
