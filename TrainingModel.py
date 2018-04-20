@@ -51,7 +51,7 @@ def main():
             accuracy_mean_value = sess.run(accuracy_mean, feed_dict=feed_dict)
             print_epoch_info(epoch_idx, accuracy_mean_value)
 
-        #vgg_model.save_npy(sess, sys.argv[4], sys.argv[5])
+        vgg_model.save_npy(sess, sys.argv[4], sys.argv[5])
 
 if __name__ == '__main__':
     main()
