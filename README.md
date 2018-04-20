@@ -12,22 +12,23 @@ http://www.robots.ox.ac.uk/~vgg/research/very_deep/
 Training Usage
 -----
 
-    python TrainingModel.py train_data_file max_epoch batch_size output_npy_file
+    python TrainingModel.py train_data_file max_epoch batch_size output_npy_file output_mean_file
     
     ex)
-    python TrainingModel.py ./data/train_data.txt 3 3 ./vgg16/save_model.npy
+    python TrainingModel.py ./data/train_data.txt 3 3 ./vgg16/save_model.npy ./vgg16/save_mean.txt
 
 Training Result
 ------
 
+![lena_train_result.jpg](./example/lena_train_result.jpg)
 
 Prediction Usage
 -----
 
-    python PredictionImage.py vgg_npy_file imagenet_label_file input_image_file
+    python PredictionImage.py npy_file mean_file imagenet_label_file input_image_file
     
     ex)
-    python PredictionImage.py ./vgg16/vgg16.npy ./vgg16/imagenet_classes.txt ./example/lena.jpg
+    python PredictionImage.py ./vgg16/vgg16.npy ./vgg16/vgg16_mean.txt ./vgg16/imagenet_classes.txt ./example/lena.jpg
 
 Prediction Result
 ------
