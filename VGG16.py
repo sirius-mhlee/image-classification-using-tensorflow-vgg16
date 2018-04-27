@@ -108,21 +108,6 @@ class VGG16:
     def max_pool(self, bottom, name):
         return tf.nn.max_pool(bottom, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME', name=name)
 
-    def save_npy(self, sess, npy_path, mean_path):
-        data_dict = {}
-
-        for (name, idx), var in list(self.var_dict.items()):
-            var_out = sess.run(var)
-            if name not in data_dict:
-                data_dict[name] = {}
-            data_dict[name][idx] = var_out
-
-        np.save(npy_path, data_dict)
-
-        mean_file = open(mean_path)
-        mean_file.write('{0} {1} {2}'.format(self.npy_mean[0], self.npy_mean[1], self.npy_mean[2]))
-        mean_file.close()
-
     def get_var_count(self):
         count = 0
         for var in list(self.var_dict.values()):

@@ -8,7 +8,9 @@ import VGG16 as vgg
 import DataOperator as do
 
 def print_result(label_file_path, prob, top):
-    synset = [line.strip() for line in open(label_file_path).readlines()]
+    label_file = open(label_file_path)
+    synset = [line.strip() for line in label_file.readlines()]
+    label_file.close()
 
     argsorted_prob = np.argsort(prob)[::-1]
 
