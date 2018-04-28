@@ -8,7 +8,7 @@ import VGG16 as vgg
 import DataOperator as do
 
 def print_result(label_file_path, prob, top):
-    label_file = open(label_file_path)
+    label_file = open(label_file_path, 'r')
     synset = [line.strip() for line in label_file.readlines()]
     label_file.close()
 

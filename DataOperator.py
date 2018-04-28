@@ -7,7 +7,7 @@ import tensorflow as tf
 def load_npy(npy_path, mean_path):
     npy_file = np.load(npy_path, encoding='latin1').item()
 
-    mean_file = open(mean_path)
+    mean_file = open(mean_path, 'r')
     line = mean_file.readline()
     split_line = line.split(' ')
     npy_mean = [float(split_line[0]), float(split_line[1]), float(split_line[2])]
@@ -15,7 +15,7 @@ def load_npy(npy_path, mean_path):
 
     return npy_file, npy_mean
 
-def save_npy(sess, var_dict, npy_path, mean_path):
+def save_npy(sess, var_dict, npy_mean, npy_path, mean_path):
     data_dict = {}
 
     for (name, idx), var in list(var_dict.items()):
@@ -26,8 +26,8 @@ def save_npy(sess, var_dict, npy_path, mean_path):
 
     np.save(npy_path, data_dict)
 
-    mean_file = open(mean_path)
-    mean_file.write('{0} {1} {2}'.format(self.npy_mean[0], self.npy_mean[1], self.npy_mean[2]))
+    mean_file = open(mean_path, 'w')
+    mean_file.write('{0} {1} {2}'.format(npy_mean[0], npy_mean[1], npy_mean[2]))
     mean_file.close()
 
 def load_image(img_path):
@@ -41,7 +41,7 @@ def load_train_data(train_data_path):
     train_data = []
     train_mean = [0, 0, 0]
 
-    train_file = open(train_data_path)
+    train_file = open(train_data_path, 'r')
     all_line = train_file.readlines()
     for line in all_line:
         split_line = line.split(' ')
@@ -71,3 +71,4 @@ def get_batch_data(sess, train_data, batch_size):
     batch_label = sess.run(batch_label_op)
 
     return batch_image, batch_label
+    
