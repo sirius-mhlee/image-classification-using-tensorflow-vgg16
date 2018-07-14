@@ -35,6 +35,8 @@ def main():
         correct_prediction = tf.equal(tf.argmax(vgg_model.fc8, 1), tf.argmax(label, 1))
         accuracy_mean = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
+        writer = tf.summary.FileWriter('./log/', sess.graph)
+
         sess.run(tf.global_variables_initializer())
 
         for epoch_idx in range(max_epoch):
